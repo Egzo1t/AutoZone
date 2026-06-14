@@ -10,7 +10,7 @@ export default [
   prettier,
 
   {
-    files: ['**/*.ts'],
+    files: ['src/**/*.ts'],
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
@@ -18,6 +18,11 @@ export default [
     },
     rules: {
       '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
+  },
+
+  {
+    ignores: ['dist/**', 'node_modules/**', 'drizzle.config.ts', 'eslint.config.js'],
   },
 ];
