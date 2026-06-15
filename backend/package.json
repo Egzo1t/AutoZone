@@ -15,7 +15,9 @@
     "format": "prettier . --write",
     "test": "vitest",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx src/db/seed/products.seed.ts"
   },
   "keywords": [
     "fastify",
