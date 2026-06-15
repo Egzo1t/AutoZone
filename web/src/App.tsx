@@ -1,19 +1,15 @@
-import { Button } from "@/components/ui/button";
+import { Routes, Route, Navigate } from "react-router-dom";
+import ProductsPage from "./pages/ProductsPage";
+import CreateOrderPage from "./pages/CreateOrderPage";
+import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="space-y-4 text-center">
-        <h1 className="text-7xl font-bold">
-          AutoZone Frontend Ready
-        </h1>
-
-        <Button>
-          Test Button
-        </Button>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigate to="/products" replace />} />
+      <Route path="/products" element={<ProductsPage />} />
+      <Route path="/orders/new" element={<CreateOrderPage />} />
+      <Route path="/orders/confirmation" element={<OrderConfirmationPage />} />
+    </Routes>
   );
 }
-
-export default App;
