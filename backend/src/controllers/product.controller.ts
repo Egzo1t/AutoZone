@@ -1,6 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { ProductService } from '../services/product.service.js';
 import { products } from '../db/schema/products.js';
+import { HttpError } from '../utils/httpError.js';
 
 const service = new ProductService();
 
@@ -28,7 +29,7 @@ export class ProductController {
     const product = await service.getProductById(id);
 
     if (!product) {
-      return reply.code(404).send({ message: 'Product not found' });
+      throw new HttpError('Product not found', 404);
     }
 
     return reply.send(product);
@@ -42,11 +43,21 @@ export class ProductController {
 
     const product = await service.updateProduct(id, req.body);
 
+    if (!product) {
+      throw new HttpError('Product not found', 404);
+    }
+
     return reply.send(product);
   }
 
   async delete(req: FastifyRequest<{ Params: IdParam }>, reply: FastifyReply) {
     const { id } = req.params;
+
+    const product = await service.getProductById(id);
+
+    if (!product) {
+      throw new HttpError('Product not found', 404);
+    }
 
     await service.deleteProduct(id);
 

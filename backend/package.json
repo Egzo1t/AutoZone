@@ -31,7 +31,8 @@
     "drizzle-orm": "^0.45.2",
     "fastify": "^5.8.5",
     "pg": "^8.21.0",
-    "postgres": "^3.4.9"
+    "postgres": "^3.4.9",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
