@@ -22,13 +22,13 @@ export default function ProductsPage() {
   const navigate = useNavigate();
 
   const categories = [
-    "All",
-    "Cleaning",
-    "Exterior Parts",
-    "Interior Accessories",
-    "Lighting",
-    "Performance Parts",
-    "Car Accessories General",
+    "all",
+    "cleaning",
+    "exterior_parts",
+    "interior_accessories",
+    "lighting",
+    "performance_parts",
+    "car_accessories_general",
   ];
 
   useEffect(() => {
