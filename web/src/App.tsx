@@ -1,9 +1,17 @@
+import { Button } from "@/components/ui/button";
+
 function App() {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <h1 className="text-6xl font-bold">
-        AutoZone Inventory Management
-      </h1>
+      <div className="space-y-4 text-center">
+        <h1 className="text-7xl font-bold">
+          AutoZone Frontend Ready
+        </h1>
+
+        <Button>
+          Test Button
+        </Button>
+      </div>
     </div>
   );
 }
