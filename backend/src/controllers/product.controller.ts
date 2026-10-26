@@ -12,6 +12,10 @@ type IdParam = {
   id: string;
 };
 
+type CategoryQuery = {
+  category: string;
+};
+
 export class ProductController {
   async create(req: FastifyRequest<{ Body: CreateProductBody }>, reply: FastifyReply) {
     const product = await service.createProduct(req.body);
@@ -62,5 +66,17 @@ export class ProductController {
     await service.deleteProduct(id);
 
     return reply.code(204).send();
+  }
+
+  async filterByCategory(req: FastifyRequest<{ Querystring: CategoryQuery }>, reply: FastifyReply) {
+    const { category } = req.query;
+
+    const products = await service.filterProductsByCategory(category);
+
+    if (products.length === 0) {
+      throw new HttpError('No products found for this category', 404);
+    }
+
+    return reply.send(products);
   }
 }

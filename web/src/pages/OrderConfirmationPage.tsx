@@ -1,5 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Button } from "../components/ui/button";
 
 export default function OrderConfirmationPage() {
@@ -26,13 +31,15 @@ export default function OrderConfirmationPage() {
             Your order has been processed successfully.
           </p>
 
-          <div className="text-lg font-bold">
-            Total: €{total.toFixed(2)}
-          </div>
+          <div className="text-lg font-bold">Total: €{total.toFixed(2)}</div>
 
-          <Button onClick={() => navigate("/products")} className="w-full">
-            Back to Products
-          </Button>
+          <div className="flex justify-center gap-4 mt-4">
+            <Button onClick={() => navigate("/products")} variant={"outline"}>
+              Back to Products
+            </Button>
+
+            <Button onClick={() => navigate("/orders")}>View Orders</Button>
+          </div>
         </CardContent>
       </Card>
     </div>

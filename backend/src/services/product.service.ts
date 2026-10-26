@@ -27,4 +27,8 @@ export class ProductService {
   async deleteProduct(id: string) {
     await productRepository.delete(id);
   }
+
+  async filterProductsByCategory(category: string) {
+    return await productRepository.filterByCategory(category);
+  }
 }

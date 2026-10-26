@@ -11,4 +11,9 @@ export class OrderController {
     const order = await service.createOrder(req.body);
     return reply.code(201).send(order);
   }
+
+  async getAll(req: FastifyRequest, reply: FastifyReply) {
+    const orders = await service.getAllOrders();
+    return reply.send(orders);
+  }
 }

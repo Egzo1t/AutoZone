@@ -69,6 +69,7 @@ export default function ProductsPage() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold mb-6">Products</h1>
+        <Button onClick={() => navigate("/orders")}>View Orders</Button>
         <Button onClick={() => navigate("/orders/new")}>Create Order</Button>
       </div>
       <div className="mb-6">

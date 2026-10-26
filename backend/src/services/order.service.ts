@@ -17,4 +17,8 @@ export class OrderService {
 
     return repo.createOrder(data.items);
   }
+
+  async getAllOrders() {
+    return repo.getAllOrders();
+  }
 }

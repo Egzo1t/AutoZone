@@ -23,4 +23,8 @@ export class ProductRepository {
     async delete(id: string) {
         await db.delete(products).where(eq(products.id, id)).returning();
     }
+
+    async filterByCategory(category: string) {
+        return await db.select().from(products).where(eq(products.category, category));
+    }
 }

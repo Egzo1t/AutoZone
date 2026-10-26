@@ -54,4 +54,55 @@ export class OrderRepository {
       return order;
     });
   }
+
+  async getAllOrders() {
+    const ordersWithItems = await db
+      .select({
+        orderId: orders.id,
+        totalAmount: orders.totalAmount,
+        createdAt: orders.createdAt,
+
+        orderItemId: orderItems.id,
+        quantity: orderItems.quantity,
+        unitPrice: orderItems.unitPrice,
+
+        productId: products.id,
+        productName: products.name,
+        productSku: products.sku,
+        productCategory: products.category,
+      })
+      .from(orders)
+      .leftJoin(orderItems, eq(orders.id, orderItems.orderId))
+      .leftJoin(products, eq(orderItems.productId, products.id));
+
+    const ordersMap = new Map();
+
+    for (const row of ordersWithItems) {
+      if (!ordersMap.has(row.orderId)) {
+        ordersMap.set(row.orderId, {
+          id: row.orderId,
+          totalAmount: Number(row.totalAmount),
+          createdAt: row.createdAt,
+          orderItems: [],
+        });
+      }
+
+      if (row.orderItemId) {
+        ordersMap.get(row.orderId).orderItems.push({
+          id: row.orderItemId,
+          quantity: row.quantity,
+          unitPrice: Number(row.unitPrice),
+          product: row.productId
+            ? {
+                id: row.productId,
+                name: row.productName,
+                sku: row.productSku,
+                category: row.productCategory,
+              }
+            : null,
+        });
+      }
+    }
+    return Array.from(ordersMap.values());
+  }
 }

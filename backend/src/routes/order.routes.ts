@@ -5,4 +5,5 @@ const controller = new OrderController();
 
 export async function orderRoutes(app: FastifyInstance) {
   app.post("/orders", controller.create.bind(controller));
+  app.get("/orders", controller.getAll.bind(controller));
 }
