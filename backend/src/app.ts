@@ -3,6 +3,7 @@ import cors from '@fastify/cors';
 import { healthRoute } from './routes/health.route.js';
 import { productRoutes } from './routes/product.routes.js';
 import { orderRoutes } from './routes/order.routes.js';
+import { userRoutes } from './routes/user.routes.js';
 import { HttpError } from './utils/httpError.js';
 
 export async function buildApp() {
@@ -30,6 +31,6 @@ export async function buildApp() {
   await app.register(healthRoute);
   await app.register(productRoutes);
   await app.register(orderRoutes);
-  
+  await app.register(userRoutes);
   return app;
 }
